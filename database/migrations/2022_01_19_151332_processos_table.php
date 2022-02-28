@@ -19,6 +19,7 @@ class ProcessosTable extends Migration
             $table->integer('reu');
             $table->string('codigo', 50);
             $table->decimal('valor',10,2);
+            $table->integer('escritorio_id');
             $table->integer('natureza_id');
             $table->integer('vara_id');       
             $table->date('data');

@@ -62,15 +62,23 @@ class Cliente extends Model
      *
      * @var array
      */
-    protected $with = ['escritorio', 'processos', 'pais', 'estado', 'cidade'];
+    protected $with = ['escritorio', 'pais', 'estado', 'cidade'];
 
 
     /**
      * Get the car's owner.
      */
-    public function processos()
+    public function autor()
     {
-        return $this->hasMany(Processo::class, 'cliente_id');
+        return $this->hasMany(Processo::class, 'autor', 'id');
+    }
+
+    /**
+     * Get the car's owner.
+     */
+    public function reu()
+    {
+        return $this->hasMany(Processo::class, 'reu', 'id');
     }
 
     /**
