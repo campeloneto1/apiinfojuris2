@@ -51,7 +51,7 @@ class Processo extends Model
      *
      * @var array
      */
-    protected $with = ['autor', 'reu', 'vara', 'audiencias', 'escritorio'];
+    protected $with = ['autor', 'reu', 'vara', 'escritorio', 'natureza'];
 
 
     /**
@@ -59,7 +59,7 @@ class Processo extends Model
      */
     public function autor()
     {
-        return $this->belongsTo(Cliente::class, 'id', 'autor');
+        return $this->belongsTo(Cliente::class, 'autor', 'id');
     }
 
     /**
@@ -67,7 +67,7 @@ class Processo extends Model
      */
     public function reu()
     {
-        return $this->belongsTo(Cliente::class, 'id', 'reu');
+        return $this->belongsTo(Cliente::class, 'reu', 'id');
     }
 
     /**
@@ -84,6 +84,14 @@ class Processo extends Model
     public function escritorio()
     {
         return $this->belongsTo(Escritorio::class);
+    }
+
+    /**
+     * Get the car's owner.
+     */
+    public function natureza()
+    {
+        return $this->belongsTo(Natureza::class);
     }
 
     /**

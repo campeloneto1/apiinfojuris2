@@ -18,6 +18,10 @@ class ComarcasController extends Controller
        	return Comarca::find($request->id);
     }
 
+    public function where(Request $request){    
+        return Comarca::where('tribunal_id', $request->id)->orderBy('nome')->get();
+    }
+
     public function post(Request $request){    
         $data = new Comarca;
 

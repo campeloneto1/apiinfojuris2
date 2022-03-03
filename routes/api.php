@@ -62,6 +62,7 @@ Route::group(['middleware' => ['guest:api']], function() {
     Route::post('/comarcas', [ComarcasController::class, 'post']);  
     Route::put('/comarcas', [ComarcasController::class, 'put']);   
     Route::delete('/comarcas/{id}', [ComarcasController::class, 'delete']); 
+    Route::get('/comarcas/{id}/where', [ComarcasController::class, 'where']); 
 
     Route::get('/escritorios', [EscritoriosController::class, 'get']); 
     Route::get('/escritorios/{id}', [EscritoriosController::class, 'find']); 
@@ -128,5 +129,6 @@ Route::group(['middleware' => ['guest:api']], function() {
     Route::post('/varas', [VarasController::class, 'post']); 
     Route::put('/varas', [VarasController::class, 'put']);   
     Route::delete('/varas/{id}', [VarasController::class, 'delete']); 
+    Route::get('/varas/{id}/where', [VarasController::class, 'where']); 
 
 });

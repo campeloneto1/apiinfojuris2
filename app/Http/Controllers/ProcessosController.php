@@ -7,20 +7,31 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use App\Models\Processo;
 use App\Models\Log;
+use Carbon\Carbon;
 
 
 class ProcessosController extends Controller
 {
     public function get(){    
-       	return Processo::orderBy('nome')->get();
+       
+        $user = Auth::user();
+       
+        if($user->perfil->administrador){
+            return Processo::with('audiencias')->orderBy('id', 'desc')->get();
+        }else{        
+            return Processo::with('audiencias')->where('escritorio_id', $user->escritorio_id)->orderBy('id', 'desc')->get();   
+        }
     }
 
     public function find(Request $request){    
-       	return Processo::find($request->id);
+       	return Processo::with('audiencias')->find($request->id);
     }
 
-    public function post(Request $request){    
+    public function post(Request $request){   
+        $date = Carbon::now(); 
         $data = new Processo;
+
+        $data->escritorio_id = $request->escritorio_id;
 
         $data->autor = $request->autor;
         $data->reu = $request->reu;
@@ -29,7 +40,7 @@ class ProcessosController extends Controller
 
         $data->natureza_id = $request->natureza_id;
         $data->vara_id = $request->vara_id;
-        $data->data = $request->data;
+        $data->data = $date->year.'-'.$date->month.'-'.$date->day;
 
         $data->obs = $request->obs;
         $data->status = 1;
@@ -41,7 +52,7 @@ class ProcessosController extends Controller
         if($data->save()){
             $log = new Log;
             $log->user_id = Auth::id();
-            $log->mensagem = 'Cadastrou uma Processo';
+            $log->mensagem = 'Cadastrou um Processo';
             $log->table = 'processos';
             $log->action = 1;
             $log->fk = $data->id;
@@ -57,19 +68,20 @@ class ProcessosController extends Controller
        	$data = Processo::find($request->id);
         $dataold = Processo::find($request->id);
 
-        $data->autor = $request->autor;
-        $data->reu = $request->reu;
-        $data->codigo = $request->codigo;
-        $data->valor = $request->valor;
+    
+        $data->autor = $request->autor ? $request->autor : $dataold->autor;
+        $data->reu = $request->reu ? $request->reu : $dataold->reu;
+        $data->codigo = $request->codigo ? $request->codigo : $dataold->codigo;
+        $data->valor = $request->valor ? $request->valor : $dataold->valor;
 
-        $data->natureza_id = $request->natureza_id;
-        $data->vara_id = $request->vara_id;
-        $data->data = $request->data;
+        $data->natureza_id = $request->natureza_id ? $request->natureza_id : $dataold->natureza_id;
+        $data->vara_id = $request->vara_id ? $request->vara_id : $dataold->vara_id;
+        $data->data = $request->data ? $request->data : $dataold->data;
 
-        $data->obs = $request->obs;
+        $data->obs = $request->obs ? $request->obs : $dataold->obs;
         $data->status = 1;
 
-        $data->key = bcrypt($request->codigo);
+        $data->key = bcrypt($request->codigo ? $request->codigo : $dataold->codigo);
 
        	$data->updated_by = Auth::id();
 

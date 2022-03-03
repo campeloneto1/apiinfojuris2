@@ -18,6 +18,10 @@ class VarasController extends Controller
        	return Vara::find($request->id);
     }
 
+    public function where(Request $request){    
+        return Vara::where('comarca_id', $request->id)->orderBy('nome')->get();
+    }
+
     public function post(Request $request){    
         $data = new Vara;
 
