@@ -47,4 +47,20 @@ class Comarca extends Model
         'created_by',
         'updated_by'
     ];
+
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['tribunal'];
+
+
+    /**
+     * Get the car's owner.
+     */
+    public function tribunal()
+    {
+        return $this->belongsTo(Tribunal::class);
+    }
 }

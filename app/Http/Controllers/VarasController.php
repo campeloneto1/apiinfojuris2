@@ -67,23 +67,23 @@ class VarasController extends Controller
        	$data = Vara::find($request->id);
         $dataold = Vara::find($request->id);
 
-        $$data->nome = $request->nome;
-        $data->comarca_id = $request->comarca_id;
+        $$data->nome = $request->nome ? $request->nome : $dataold->nome;
+        $data->comarca_id = $request->comarca_id ? $request->comarca_id : $dataold->comarca_id;
 
-        $data->telefone1 = $request->telefone1;
-        $data->telefone2 = $request->telefone2;
-        $data->email = $request->email;
+        $data->telefone1 = $request->telefone1 ? $request->telefone1 : $dataold->telefone1;
+        $data->telefone2 = $request->telefone2 ? $request->telefone2 : $dataold->telefone2;
+        $data->email = $request->email ? $request->email : $dataold->email;
 
-        $data->obs = $request->obs;
+        $data->obs = $request->obs ? $request->obs : $dataold->obs;
 
-        $data->pais_id = $request->pais_id;
-        $data->estado_id = $request->estado_id;
-        $data->cidade_id = $request->cidade_id;
-        $data->rua = $request->rua;
-        $data->numero = $request->numero;
-        $data->bairro = $request->bairro;
-        $data->complemento = $request->complemento;
-        $data->cep = $request->cep;
+        $data->pais_id = $request->pais_id ? $request->pais_id : $dataold->pais_id;
+        $data->estado_id = $request->estado_id ? $request->estado_id : $dataold->estado_id;
+        $data->cidade_id = $request->cidade_id ? $request->cidade_id : $dataold->cidade_id;
+        $data->rua = $request->rua ? $request->rua : $dataold->rua;
+        $data->numero = $request->numero ? $request->numero : $dataold->numero;
+        $data->bairro = $request->bairro ? $request->bairro : $dataold->bairro;
+        $data->complemento = $request->complemento ? $request->complemento : $dataold->complemento;
+        $data->cep = $request->cep ? $request->cep : $dataold->cep;
 
         $data->key = bcrypt($request->nome);
 

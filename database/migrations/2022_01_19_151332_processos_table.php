@@ -17,7 +17,7 @@ class ProcessosTable extends Migration
             $table->increments('id');    
             $table->integer('autor');
             $table->integer('reu');
-            $table->string('codigo', 50);
+            $table->string('codigo', 50)->unique();
             $table->decimal('valor',10,2);
             $table->integer('escritorio_id');
             $table->integer('natureza_id');

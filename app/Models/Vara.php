@@ -51,5 +51,20 @@ class Vara extends Model
     ];
 
     
+     /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['comarca'];
+
+
+    /**
+     * Get the car's owner.
+     */
+    public function comarca()
+    {
+        return $this->belongsTo(Comarca::class);
+    }
 
 }

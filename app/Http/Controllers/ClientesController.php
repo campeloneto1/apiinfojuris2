@@ -38,8 +38,8 @@ class ClientesController extends Controller
         $data->estado_civil = $request->estado_civil;
         $data->nacionalidade = $request->nacionalidade;
 
-        $data->mae = $request->pai;
-        $data->mae = $request->pai;
+        $data->mae = $request->mae;
+        $data->pai = $request->pai;
 
         $data->ocupacao_id = $request->ocupacao_id;
         $data->escritorio_id = $request->escritorio_id;
