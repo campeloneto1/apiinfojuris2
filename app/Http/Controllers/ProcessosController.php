@@ -17,9 +17,9 @@ class ProcessosController extends Controller
         $user = Auth::user();
        
         if($user->perfil->administrador){
-            return Processo::with('audiencias')->orderBy('id', 'desc')->get();
+            return Processo::orderBy('id', 'desc')->get();
         }else{        
-            return Processo::with('audiencias')->where('escritorio_id', $user->escritorio_id)->orderBy('id', 'desc')->get();   
+            return Processo::where('escritorio_id', $user->escritorio_id)->orderBy('id', 'desc')->get();   
         }
     }
 

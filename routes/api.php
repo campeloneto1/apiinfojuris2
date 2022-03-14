@@ -38,11 +38,13 @@ Route::group(['middleware' => ['guest:api']], function() {
  Route::group(['middleware' => ['auth:api']], function() {
     Route::get('/logout', [AuthController::class, 'logout']); 
 
-    Route::get('/Audiencias', [AudienciasController::class, 'get']); 
-    Route::get('/Audiencias/{id}', [AudienciasController::class, 'find']); 
-    Route::post('/Audiencias', [AudienciasController::class, 'post']);  
-    Route::put('/Audiencias', [AudienciasController::class, 'put']);   
-    Route::delete('/Audiencias/{id}', [AudienciasController::class, 'delete']); 
+    Route::get('/audiencias', [AudienciasController::class, 'get']); 
+    Route::get('/audiencias/{id}', [AudienciasController::class, 'find']); 
+    Route::post('/audiencias', [AudienciasController::class, 'post']);  
+    Route::put('/audiencias', [AudienciasController::class, 'put']);   
+    Route::delete('/audiencias/{id}', [AudienciasController::class, 'delete']); 
+    Route::get('/audiencias/{id}/{id2}/calendario', [AudienciasController::class, 'calendario']); 
+    Route::get('/audiencias/{id}/where', [AudienciasController::class, 'where']); 
 
    	Route::get('/cidades', [CidadesController::class, 'get']); 
     Route::get('/cidades/{id}', [CidadesController::class, 'find']); 
