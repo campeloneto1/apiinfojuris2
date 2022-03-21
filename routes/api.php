@@ -77,6 +77,7 @@ Route::group(['middleware' => ['guest:api']], function() {
     Route::post('/estados', [EstadosController::class, 'post']);  
     Route::put('/estados', [EstadosController::class, 'put']);   
     Route::delete('/estados/{id}', [EstadosController::class, 'delete']); 
+    Route::get('/estados/{id}/where', [EstadosController::class, 'where']); 
 
     Route::get('/logs', [LogsController::class, 'get']); 
     Route::get('/logs/{id}', [LogsController::class, 'find']); 

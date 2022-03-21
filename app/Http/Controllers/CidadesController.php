@@ -19,6 +19,10 @@ class CidadesController extends Controller
        	return Cidade::find($request->id);
     }
 
+    public function where(Request $request){    
+        return Cidade::where('estado_id', $request->id)->orderBy('nome')->get();
+    }
+
     public function post(Request $request){    
         $data = new Cidade;
 

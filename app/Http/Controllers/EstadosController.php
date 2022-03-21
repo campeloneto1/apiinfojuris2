@@ -19,6 +19,10 @@ class EstadosController extends Controller
        	return Estado::find($request->id);
     }
 
+    public function where(Request $request){    
+        return Estado::where('pais_id', $request->id)->orderBy('nome')->get();
+    }
+
     public function post(Request $request){    
         $data = new Estado;
 

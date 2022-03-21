@@ -62,7 +62,7 @@ class Cliente extends Model
      *
      * @var array
      */
-    protected $with = ['escritorio', 'pais', 'estado', 'cidade'];
+    protected $with = ['escritorio', 'pais', 'estado', 'cidade', 'ocupacao'];
 
 
     /**
